@@ -84,9 +84,9 @@ export default async function PostPage({
             </ReactMarkdown>
           </div>
           <footer className="article-footer">
-            <p>Keep exploring the craft.</p>
+            <p>Find the signal. Practise the craft.</p>
             <Link href="/" className="button-link button-link-secondary">
-              Browse all articles <span aria-hidden="true">→</span>
+              Back to PM Signal <span aria-hidden="true">→</span>
             </Link>
           </footer>
         </article>

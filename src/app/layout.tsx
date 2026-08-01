@@ -3,16 +3,16 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: 'PM Craft — Practical Product Thinking',
-    template: '%s | PM Craft',
+    default: 'PM Signal | The Craft of Product Management',
+    template: '%s | PM Signal',
   },
   description:
-    'Practical field notes on product strategy, discovery, metrics, and the craft behind good decisions.',
+    'Practical thinking about the judgment, habits, and human work behind excellent product management.',
 };
 
 const themeScript = `
   try {
-    const saved = localStorage.getItem('pm-craft-theme');
+    const saved = localStorage.getItem('pm-signal-theme');
     const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     document.documentElement.dataset.theme = saved || preferred;
   } catch (_) {}

@@ -1,8 +1,8 @@
-# SIGNAL - Product & Tech Insights Blog
+# PM Signal | The Craft of Product Management
 
-A modern, high-performance media & blog publication built with Next.js 15 and integrated seamlessly with **Pages CMS**.
+A modern, accessible publication about the craft of product management, built with Next.js and integrated with **Pages CMS**.
 
-Designed as an official web companion for YouTube tech and product strategy video breakdowns.
+The current site is a coming-soon experience with one launch article. New posts can be added through Pages CMS when the publication is ready to grow.
 
 ## Features
 

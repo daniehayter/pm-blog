@@ -17,7 +17,7 @@ export default function ThemeToggle() {
   function toggleTheme() {
     const nextTheme: Theme = theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = nextTheme;
-    window.localStorage.setItem('pm-craft-theme', nextTheme);
+    window.localStorage.setItem('pm-signal-theme', nextTheme);
     setTheme(nextTheme);
   }
 
