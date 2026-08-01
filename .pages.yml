@@ -1,6 +1,6 @@
 media:
   input: public/media
-  output: /pm-blog/media
+  output: /media
 
 content:
   - name: posts

@@ -28,6 +28,10 @@ Designed as an official web companion for YouTube tech and product strategy vide
    npm run build
    ```
 
+The production site is served from the root of the custom domain. If the custom
+domain is removed and the site returns to the default GitHub project URL, build
+with `NEXT_PUBLIC_BASE_PATH=/pm-blog`.
+
 ## Content Management (Pages CMS)
 
 Blog entries are stored as Markdown files under `docs/`. Add or edit posts via Pages CMS or directly in `docs/`:
