@@ -7,70 +7,44 @@ const docsDirectory = path.join(process.cwd(), 'docs');
 export interface Post {
   slug: string;
   title: string;
-  content: string;
   date: string;
-  category?: string;
+  category: string;
   videoId?: string;
-  excerpt?: string;
-  readTime?: string;
-  coverImage?: string;
+  readTime: string;
+  excerpt: string;
   featured?: boolean;
-}
-
-export function getPostSlugs() {
-  if (!fs.existsSync(docsDirectory)) return [];
-  return fs.readdirSync(docsDirectory);
-}
-
-export function getPostBySlug(slug: string): Post {
-  const realSlug = slug.replace(/\.md$/, '');
-  const fullPath = path.join(docsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
-
-  // Calculate estimated read time if not provided
-  const wordCount = content.split(/\s+/).length;
-  const computedReadTime = `${Math.max(1, Math.ceil(wordCount / 200))} min read`;
-
-  // Fallbacks for required fields
-  const title = data.title || realSlug;
-  const date = data.date || '2026-08-01';
-
-  return {
-    slug: realSlug,
-    title,
-    date,
-    category: data.category || 'Tech Breakdown',
-    videoId: data.videoId || extractVideoIdFromContent(content) || undefined,
-    excerpt: data.excerpt || generateExcerpt(content),
-    readTime: data.readTime || computedReadTime,
-    coverImage: data.coverImage || undefined,
-    featured: Boolean(data.featured),
-    content,
-  };
-}
-
-function extractVideoIdFromContent(content: string): string | null {
-  const youtubeRegex =
-    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
-  const match = content.match(youtubeRegex);
-  return match ? match[1] : null;
-}
-
-function generateExcerpt(content: string): string {
-  const plainText = content
-    .replace(/<[^>]*>/g, '') // remove HTML tags
-    .replace(/[#*`_~]/g, '') // remove markdown symbols
-    .replace(/\s+/g, ' ')
-    .trim();
-  return plainText.length > 140 ? `${plainText.substring(0, 137)}...` : plainText;
+  content: string;
 }
 
 export function getAllPosts(): Post[] {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .filter((slug) => slug.endsWith('.md'))
-    .map((slug) => getPostBySlug(slug))
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-  return posts;
+  if (!fs.existsSync(docsDirectory)) {
+    return [];
+  }
+
+  const files = fs.readdirSync(docsDirectory).filter(file => file.endsWith('.md'));
+  const posts = files.map(file => {
+    const slug = file.replace(/\.md$/, '');
+    const filePath = path.join(docsDirectory, file);
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const { data, content } = matter(fileContents);
+
+    return {
+      slug,
+      title: data.title || slug,
+      date: data.date || new Date().toISOString().split('T')[0],
+      category: data.category || 'Uncategorized',
+      videoId: data.videoId,
+      readTime: data.readTime || '5 min read',
+      excerpt: data.excerpt || content.slice(0, 150),
+      featured: data.featured || false,
+      content,
+    };
+  });
+
+  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+export function getPostBySlug(slug: string): Post | undefined {
+  const posts = getAllPosts();
+  return posts.find(post => post.slug === slug);
 }
