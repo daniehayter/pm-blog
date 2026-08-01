@@ -14,15 +14,16 @@ export default function Home() {
     <div className="site-wrapper">
       <Navbar />
 
-      <main className="main-content">
+      <main id="main-content" className="main-content">
         {featuredPost && <HeroFeatured post={featuredPost} />}
 
         <section className="posts-section">
           <div className="section-header">
             <div>
-              <h2 className="section-title">Latest Breakdown &amp; Insights</h2>
+              <span className="eyebrow">The latest</span>
+              <h2 className="section-title">Notes from the product workshop</h2>
               <p className="section-subtitle">
-                Explore in-depth video breakdowns, frameworks, and product strategy guides.
+                Frameworks, breakdowns, and honest lessons for doing better product work.
               </p>
             </div>
           </div>
@@ -47,9 +48,10 @@ export default function Home() {
                   <p className="card-excerpt">{post.excerpt}</p>
 
                   <div className="card-footer">
-                    <span className="card-date">{post.date}</span>
+                    <time className="card-date" dateTime={post.date}>{post.date}</time>
                     <span className="card-read-time">{post.readTime}</span>
                   </div>
+                  <span className="card-read-more">Read article <span aria-hidden="true">→</span></span>
                 </Link>
               </article>
             ))}

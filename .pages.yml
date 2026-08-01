@@ -1,11 +1,47 @@
-media: media
+media:
+  input: public/media
+  output: /pm-blog/media
+
 content:
-  - name: pages
-    label: Pages
+  - name: posts
+    label: Blog posts
     type: collection
     path: docs
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      primary: title
+      sort: date
+      order: desc
     fields:
       - name: title
+        label: Title
         type: string
+        required: true
+      - name: date
+        label: Publication date
+        type: date
+        required: true
+      - name: category
+        label: Category
+        type: string
+        required: true
+      - name: videoId
+        label: YouTube video ID
+        type: string
+      - name: readTime
+        label: Read time
+        type: string
+        default: "5 min read"
+      - name: excerpt
+        label: Excerpt
+        type: text
+        required: true
+      - name: featured
+        label: Featured post
+        type: boolean
+        default: false
       - name: body
+        label: Body
         type: rich-text
+        required: true

@@ -1,1 +1,15 @@
-aW1wb3J0IHR5cGUgeyBOZXh0Q29uZmlnIH0gZnJvbSAibmV4dCI7Cgpjb25zdCBuZXh0Q29uZmlnOiBOZXh0Q29uZmlnID0gewogIC8vIEV4cG9ydCBhcyBmdWxseSBzdGF0aWMgSFRNTCBmb3IgR2l0SHViIFBhZ2VzIGhvc3RpbmcKICBvdXRwdXQ6ICJleHBvcnQiLAoKICAvLyBEaXNhYmxlIE5leHQuanMgaW1hZ2Ugb3B0aW1pc2F0aW9uIChub3Qgc3VwcG9ydGVkIGluIHN0YXRpYyBleHBvcnQpCiAgaW1hZ2VzOiB7CiAgICB1bm9wdGltaXplZDogdHJ1ZSwKICB9LAp9OwoKZXhwb3J0IGRlZmF1bHQgbmV4dENvbmZpZzsK
+import type { NextConfig } from "next";
+
+const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+
+const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+  basePath: isGitHubPages ? "/pm-blog" : "",
+  assetPrefix: isGitHubPages ? "/pm-blog/" : undefined,
+};
+
+export default nextConfig;
