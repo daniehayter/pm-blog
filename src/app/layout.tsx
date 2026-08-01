@@ -1,25 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
-    default: 'SIGNAL — Product & Tech Insights',
-    template: '%s | SIGNAL',
+    default: 'PM Craft — Practical Product Thinking',
+    template: '%s | PM Craft',
   },
   description:
-    'In-depth video breakdowns, product strategy frameworks, and tech insights for builders and makers.',
+    'Practical field notes on product strategy, discovery, metrics, and the craft behind good decisions.',
 };
+
+const themeScript = `
+  try {
+    const saved = localStorage.getItem('pm-craft-theme');
+    const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = saved || preferred;
+  } catch (_) {}
+`;
 
 export default function RootLayout({
   children,
@@ -27,8 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>
+        <a className="skip-link" href="#main-content">Skip to main content</a>
+        {children}
+      </body>
     </html>
   );
 }

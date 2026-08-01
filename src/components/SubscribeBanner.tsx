@@ -1,10 +1,11 @@
 export default function SubscribeBanner() {
   return (
-    <section className="subscribe-banner">
-      <div className="subscribe-content">
-        <h2>Stay Updated</h2>
-        <p>Get the latest insights delivered to your inbox</p>
+    <aside className="subscribe-banner" aria-labelledby="keep-crafting-title">
+      <div>
+        <span className="eyebrow">Keep crafting</span>
+        <h2 id="keep-crafting-title">Build products people choose to use.</h2>
       </div>
-    </section>
+      <p>Field notes on product strategy, discovery, metrics, and the craft behind good decisions.</p>
+    </aside>
   );
 }

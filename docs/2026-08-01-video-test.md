@@ -10,8 +10,6 @@ featured: true
 
 In this episode, we break down the core mechanics of building a high-impact product roadmap in fast-moving tech organizations.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ## Key Takeaways
 
 1. **Outcome over Output**: Focus on metrics and customer value rather than pure feature velocity.

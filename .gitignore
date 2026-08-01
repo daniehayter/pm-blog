@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+
+# Local environment files
+.env*
+!.env.example
+
+# OS and editor files
+.DS_Store
+*.swp
